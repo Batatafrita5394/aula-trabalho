@@ -4,7 +4,7 @@ import ipywidgets as widgets
 from IPython.display import display, clear_output
 
 # ==========================================
-# 1. MODELO E LÓGICA DE NEGÓCIO (BACKEND)
+# 1. MODELO E LÓGICA DE NEGÓCIO 
 # ==========================================
 class Usuario:
     def __init__(self, id_usuario, nome, data_nascimento, genero, username, senha):
@@ -18,7 +18,6 @@ class Usuario:
 class GerenciadorUsuarios:
     def __init__(self):
         self.banco_usuarios = {}
-        # Usuário padrão para acesso de administrador
         self.admin_user = "admin"
         self.admin_pass = "admin123"
 
@@ -27,11 +26,9 @@ class GerenciadorUsuarios:
         user_clean = username.strip()
         senha_clean = senha.strip()
 
-        # Verifica se é admin
         if user_clean.lower() == self.admin_user.lower() and senha_clean == self.admin_pass:
             return "Administrador"
 
-        # Verifica se é um usuário cadastrado
         for usr in self.banco_usuarios.values():
             if usr.username.strip().lower() == user_clean.lower() and usr.senha.strip() == senha_clean:
                 return usr.nome
@@ -80,10 +77,8 @@ class GerenciadorUsuarios:
 gerenciador = GerenciadorUsuarios()
 
 # ==========================================
-# 2. INTERFACE GRÁFICA ROXO OBSIDIANA (FRONTEND)
+#INTERFACE GRÁFICA ROXO OBSIDIANA (FRONTEND)
 # ==========================================
-
-# Saídas de feedback
 out_status_cadastro = widgets.Output()
 out_status_login = widgets.Output()
 out_lista = widgets.Output()
