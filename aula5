@@ -82,6 +82,45 @@ if porta == 23 and cvss >= 9:
     print(f'Altamente Critíco acesso a porta 23 e cvss maior que 8')
 elif porta == 3389 and cvss >=7:
     print('Aleta alto : Risco alto porta 3389 com host e cvss maior que 7')
+inventario = [
+    {
+        "hostname":"WEB01",
+        "IP":"192.168.1.10",
+        'Status':'ONLINE',
+        'sistema':'OS',
+        'criticidade':'ALTA',
+    },
+    {
+        "hostname":"DB01",
+        "IP":"192.168.1.20",
+        'sistema':'Linux',
+        'criticidade':'ALTA',
+        'status':'ONLINE'
+    },
+    {
+        "hostname":"FW01",
+        "IP":"192.168.1.1",
+        "status":"ONLINE",
+        'sistema':'Windows',
+        'criticidade':'ALTA',
+    },
+    {
+        "hostname":"RTR01",
+        "IP":"192.168.1.254",
+        "status":"OFFLINE",
+        'sistema':'Linux',
+        'criticidade':'ALTA',
+    }
+]
+print(len(inventario))
+inventario.append({
+        "hostname":input("Digite o hostname: "),
+        "IP":input("Digite o IP: "),
+        "status":input("Digite o status: "),
+        'sistema':input("Digite o sistema: "),
+        'criticidade':input("Digite a criticidade: "),
+    })
+
 
 print('=' * 50)
 print('CADASTRO DE ATIVOS DE REDE')
@@ -102,6 +141,8 @@ print(f'Pontuação de Risco: {pontuacao} (Tipo: {type(pontuacao).__name__})')
 print(f'Porta: {porta} (Tipo: {type(porta).__name__})')
 for cri in criti:
   print(f'Host verificada : {cri} - {criti[cri]} - Status : {hosts[cri]} - CVSS : {cvss[cri]}')
+for ativo in inventario:
+  print(f"{ativo['hostname']} === {ativo}")
 
 alerta_seguranca = (score_cvss >= 7.0) or (not firewall_ativo)
 
